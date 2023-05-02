@@ -14,8 +14,6 @@ from django.core.exceptions import PermissionDenied
 from vendor.models import Vendor
 
 # Restrict the vendor from accessing the customer page
-
-
 def check_role_vendor(user):
     if user.role == 1:
         return True
