@@ -14,6 +14,8 @@ from django.core.exceptions import PermissionDenied
 from vendor.models import Vendor
 
 # Restrict the vendor from accessing the customer page
+
+
 def check_role_vendor(user):
     if user.role == 1:
         return True
@@ -57,7 +59,7 @@ def registerUser(request):
 
             # Send verification email
             mail_subject = 'Please activate your account'
-            email_template = 'account_verification_email.html'
+            email_template = 'accounts/emails/account_verification_email.html'
             send_verification_email(
                 request, user, mail_subject, email_template)
             messages.success(
@@ -100,7 +102,7 @@ def registerVendor(request):
 
             # Send verification email
             mail_subject = 'Please activate your account'
-            email_template = 'registerUser.html'
+            email_template = 'accounts/emails/account_verification_email.html'
             send_verification_email(
                 request, user, mail_subject, email_template)
             messages.success(
