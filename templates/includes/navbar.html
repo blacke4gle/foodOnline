@@ -18,9 +18,9 @@
             <ul>
               <li class="location-has-children choose-location">
                 <form action="#">
-                  <input type="text" value="" name="location" placeholder="Enter your delivery location"
+                  <input type="text" value="" name="location" id="location" placeholder="Your current location"
                     autocomplete="off" />
-                  <span id="foodbakery_radius_location_open" class="foodbakery-radius-location"><i
+                  <span id="foodbakery_radius_location_open" class="foodbakery-radius-location" onclick="getLocation()"><i
                       class="icon-target5"></i></span>
                 </form>
               </li>
@@ -54,3 +54,48 @@
   </div>
 </header>
 <!-- Header End -->
+
+<script>
+let x = document.getElementById("location");
+let current_location = sessionStorage.getItem("current_location")
+if(current_location != ""){
+  x.value = current_location;
+}
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  
+  //const lat = position.coords.latitude
+  //const lng = position.coords.longitude
+
+  // x.value = lat +', '+lng
+
+  const lat = '39.975112'
+  const lng = '32.815189'
+
+  // hit AJAX request to googlemas api endpoint and get the location data using those lat and lng
+  
+  const GOOGLE_API_KEY  = "{{ GOOGLE_API_KEY }}"
+  const url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"+&key="+GOOGLE_API_KEY;
+  
+  $.ajax({
+    url: url,
+    type: "GET",
+    success: function(response){
+      const current_location = response.results[0].formatted_address
+      x.value = current_location
+      sessionStorage.setItem("current_location", current_location)
+      window.location = '?lat='+lat+'&lng='+lng
+    }
+
+  })
+
+}
+</script>
