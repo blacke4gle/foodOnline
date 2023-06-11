@@ -8,7 +8,7 @@
     <!-- Home Pages Elements Strat -->
     <!-- Main Search Start -->
     <div
-      class="page-section nopadding cs-nomargin"
+      class="page-section nopadding cs-nomargin main-search-bar"
       style="
         padding-top: 200px;
         padding-bottom: 150px;
@@ -142,6 +142,7 @@
                     <a href=" {% url 'vendor_detail' vendor.vendor_slug %} ">
                       <img
                         src="{{ vendor.user_profile.profile_picture.url }} "
+                        height="125"
                         class="attachment-full size-full wp-post-image"
                         alt=""
                     /></a>
@@ -151,6 +152,7 @@
                         src="{% static 'images/default-profile.png' %}"
                         alt=""
                         class="attachment-full size-full wp-post-image"
+                        height="125"
                       />
                     </a>
                     {% endif %}
@@ -234,7 +236,7 @@
                       </div>
                       <div class="list-option">
                         <a href="javascript:void(0)" class="shortlist-btn" data-toggle="modal" data-target="#sign-in">
-                          <i class="icon-heart-o"></i>
+                          <!-- <i class="icon-heart-o"></i> -->
                         </a>
                       </div>
                     </div>
