@@ -11,7 +11,7 @@
                     <div class="company-info">
                         <div class="img-holder">
                             <figure>
-                                {% if user_profile.profile_picture.url %}
+                                {% if user_profile.profile_picture %}
                                     <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture">
                                 {% else %}
                                     <img src="{% static 'extra-images/fb-restaurant-02.jpg' %}" alt="">
@@ -24,6 +24,7 @@
                             <div class="text">
                                 <i class="icon-phone"></i>
                                 <p> {{user.phone_number}} </p>
+                                <br>
                                 <i class="icon-envelope"></i>
                                 <p> {{user.email}} </p>
                             </div>
